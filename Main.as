@@ -13,7 +13,7 @@
 	{
 		var currentWindow:JAMWindow;
 		
-		public final SPLASHWINDOW:int = 0;
+		public final SPLASHSCREEN:int = 0;
 		
 		public function Main():void 
 		{
@@ -24,15 +24,15 @@
 		private function init(e:Event = null):void 
 		{
 			removeEventListener(Event.ADDED_TO_STAGE, init);
-			
+			goTo(SPLASHSCREEN);
 		}
 		
 		
 		public void goTo(int window) {
 			var nextW:JAMWindow;
 			switch(window) {
-				case SPLASHWINDOW:
-					nextW = new SplashWindow();
+				case SPLASHSCREEN:
+					nextW = new SplashScreen();
 				case 1:
 				
 			}
