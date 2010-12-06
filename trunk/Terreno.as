@@ -1,10 +1,11 @@
 package  
 {
+	import flash.display.MovieClip;
 	/**
 	 * ...
 	 * @author Rodrigo Camina
 	 */
-	public class Terreno
+	public class Terreno extends MovieClip
 	{
 		private var tipo:int;
 		private var direcao:int;

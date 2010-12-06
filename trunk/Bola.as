@@ -1,10 +1,11 @@
 package  
 {
+	import flash.display.MovieClip;
 	/**
 	 * ...
 	 * @author Rodrigo Camina
 	 */
-	public class Bola
+	public class Bola extends MovieClip
 	{
 		private var velocidade:int;
 		private var direcao:int;

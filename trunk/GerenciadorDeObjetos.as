@@ -34,25 +34,16 @@
 			}
 			return false;
 		}
-		
-		public function removeInactives() {
-			for each(var obj:DisplayObject in arrayDeDisplayObjects) {
-				if (obj.estaInativa()){
-					remove(obj);
-				}
-			}
-		}
-		
-		public function update():void {
-			for each(var obj:DisplayObject in arrayDeDisplayObjects) {
-				obj.update();
-			}
-		}
-		
+				
 		public function total():int {
 			return arrayDeDisplayObjects.length;
 		}
 		
+		public function removeAll():void {
+			for (; 0 < arrayDeDisplayObjects.length;) {
+				stage.removeChild(arrayDeDisplayObjects.pop());
+			}
+		}
 	}
 
 }

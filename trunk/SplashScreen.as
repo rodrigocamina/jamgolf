@@ -1,5 +1,8 @@
-package  
+﻿package  
 {
+	import flash.display.Stage;
+	import flash.events.Event;
+	import flash.events.MouseEvent;
 	/**
 	 * ...
 	 * @author Seink
@@ -7,8 +10,24 @@ package
 	public class SplashScreen extends JAMWindow
 	{
 		
-		public function SplashScreen() 
+		public function SplashScreen(stage:Stage) 
 		{
+			super(stage);
+			var hole1:Hole1 = new Hole1();
+			hole1.x = 150;
+			hole1.y = 350;
+			addObject(hole1);
+		}
+		
+		override public function update(evt:Event) {
+			trace("Yaha");
+		}
+		
+		override public function mouseUP(evt:MouseEvent) {
+			
+		}
+		
+		override public function mouseDOWN(evt:MouseEvent) {
 			
 		}
 		

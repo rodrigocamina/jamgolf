@@ -1,4 +1,4 @@
-package  
+﻿package  
 {
 	import flash.display.DisplayObjectContainer;
 	import flash.display.DisplayObject;
@@ -20,7 +20,6 @@ package
 		}
 		
 		public function update(evt:Event) {
-			super.update();
 		}
 		
 		public function mouseUP(evt:MouseEvent) {
