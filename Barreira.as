@@ -1,10 +1,11 @@
 package  
 {
+	import flash.display.MovieClip;
 	/**
 	 * ...
 	 * @author Rodrigo Camina
 	 */
-	public class Barreira
+	public class Barreira extends MovieClip
 	{
 		private var elasticidade:Number;
 		
