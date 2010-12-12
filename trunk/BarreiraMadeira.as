@@ -6,10 +6,10 @@ package
 	 * ...
 	 * @author jean
 	 */
-	public class Buraco extends MovieClip
+	public class BarreiraMadeira extends MovieClip
 	{
 		
-		public function Buraco() 
+		public function BarreiraMadeira() 
 		{
 			
 		}

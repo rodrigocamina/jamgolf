@@ -15,6 +15,10 @@
 		
 		public var SPLASHSCREEN:int = 0;
 		public var HOLE1SCREEN:int = 1;
+		public var HOLE3SCREEN:int = 3;
+		public var HOLE5SCREEN:int = 5;
+		public var HOLE7SCREEN:int = 7;
+		public var HOLE9SCREEN:int = 9;
 		
 		public function Main():void 
 		{
@@ -25,7 +29,7 @@
 		private function init(e:Event = null):void 
 		{
 			removeEventListener(Event.ADDED_TO_STAGE, init);
-			goTo(SPLASHSCREEN);
+			goTo(HOLE9SCREEN);
 		}
 		
 		
@@ -35,18 +39,26 @@
 				case SPLASHSCREEN:
 					nextW = new SplashScreen(stage);
 				case HOLE1SCREEN:
-					nextW = new Hole1Screen(stage);				
+					nextW = new Hole1Screen(stage);		
+				case HOLE3SCREEN:
+					nextW = new Hole3Screen(stage);
+				case HOLE5SCREEN:
+					nextW = new Hole5Screen(stage);
+				case HOLE7SCREEN:
+					nextW = new Hole7Screen(stage);
+				case HOLE9SCREEN:
+					nextW = new Hole9Screen(stage);
 			}
 			if (currentWindow != null) {
 				currentWindow.removeAll();
-				stage.removeEventListener(Event.ENTER_FRAME, currentWindow.simulate);
-				stage.removeEventListener(MouseEvent.MOUSE_UP, currentWindow.mouseUP);
-				stage.removeEventListener(MouseEvent.MOUSE_DOWN, currentWindow.mouseDOWN);
+				removeEventListener(Event.ENTER_FRAME, currentWindow.update);
+				removeEventListener(MouseEvent.MOUSE_UP, currentWindow.mouseUP);
+				removeEventListener(MouseEvent.MOUSE_DOWN, currentWindow.mouseDOWN);
 			}
 			currentWindow = nextW;
-			stage.addEventListener(Event.ENTER_FRAME, currentWindow.simulate);
-			stage.addEventListener(MouseEvent.MOUSE_UP, currentWindow.mouseUP);
-			stage.addEventListener(MouseEvent.CLICK, currentWindow.mouseDOWN);
+			addEventListener(Event.ENTER_FRAME, currentWindow.update);
+			addEventListener(MouseEvent.MOUSE_UP, currentWindow.mouseUP);
+			addEventListener(MouseEvent.MOUSE_DOWN, currentWindow.mouseDOWN);
 			
 		}
 	}
