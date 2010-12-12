@@ -20,7 +20,7 @@
 		}
 		
 		override public function update(evt:Event) {
-			trace("Yaha");
+			
 		}
 		
 		override public function mouseUP(evt:MouseEvent) {
