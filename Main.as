@@ -14,6 +14,7 @@
 		var currentWindow:JAMWindow;
 		
 		public var SPLASHSCREEN:int = 0;
+		public var HOLE1SCREEN:int = 1;
 		
 		public function Main():void 
 		{
@@ -33,8 +34,8 @@
 			switch(window) {
 				case SPLASHSCREEN:
 					nextW = new SplashScreen(stage);
-				case 1:
-				
+				case HOLE1SCREEN:
+					nextW = new Hole1Screen(stage);				
 			}
 			if (currentWindow != null) {
 				currentWindow.removeAll();
