@@ -1,4 +1,4 @@
-package  
+﻿package  
 {
 	import flash.display.MovieClip;
 	/**
@@ -23,6 +23,7 @@ package
 		{
 			this.velocidade = 0;
 			this.direcao = 0;
+			return this;
 		}
 		
 		public function setVelocidade(velocidade:int):void 
@@ -37,10 +38,10 @@ package
 		
 		public function update():void {
 			var rad:Number = Math.PI * this.rotation / 180;
-			var trueX = this.trueX+ Math.cos(rad)*velocidade;
-			var trueY = this.trueY + Math.sin(rad) * velocidade;
-			this.x = (int) trueX;
-			this.y = (int) trueY;
+			var trueX:Number = this.trueX+ Math.cos(rad)*velocidade;
+			var trueY:Number = this.trueY + Math.sin(rad) * velocidade;
+			this.x = trueX;
+			this.y = trueY;
 			for (var i:int; i < field.barreiras.total(); i++) {
 				var barreira:Barreira = field.barreiras.getObject(i) as Barreira;
 				if (hitTestObject(barreira)) {
@@ -51,11 +52,11 @@ package
 						rot += 360;
 					}
 					this.rotation = rot;
-					var rad:Number = Math.PI * this.rotation / 180;
-					var trueX = this.trueX+ Math.cos(rad)*velocidade;
-					var trueY = this.trueY + Math.sin(rad) * velocidade;
-					this.x = (int) trueX;
-					this.y = (int) trueY;
+					rad = Math.PI * this.rotation / 180;
+					trueX = this.trueX+ Math.cos(rad)*velocidade;
+					trueY = this.trueY + Math.sin(rad) * velocidade;
+					this.x = trueX;
+					this.y = trueY;
 				}
 			}
 		}

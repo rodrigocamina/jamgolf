@@ -1,4 +1,4 @@
-package  
+﻿package  
 {
 	/**
 	 * ...
@@ -15,6 +15,7 @@ package
 		{
 			this.atrito = 0.6;
 			this.tipo = 1;
+			return this;
 		}
 	}
 

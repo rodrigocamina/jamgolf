@@ -7,10 +7,10 @@ package
 	 */
 	public class Terreno extends MovieClip
 	{
-		private var tipo:int;
-		private var direcao:int;
-		private var inclinacao:int;
-		private var atrito:Number;
+		public var tipo:int;
+		public var direcao:int;
+		public var inclinacao:int;
+		public var atrito:Number;
 		
 		public function Terreno() 
 		{

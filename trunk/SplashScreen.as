@@ -17,8 +17,6 @@
 			hole1.x = 150;
 			hole1.y = 350;
 			addObject(hole1);
-			barreiras.addObject(barreira1);
-			terrenos.addObject(areia);
 			
 		}
 		

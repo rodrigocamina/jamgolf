@@ -1,24 +1,20 @@
-package 
+﻿package 
 {
 	import flash.display.Stage;
+	import flash.display.MovieClip;
 	
 	/**
 	 * ...
 	 * @author Rodrigo Camina
 	 */
-	public class Scoreboard
+	public class Scoreboard extends MovieClip
 	{
 		private var par:Array;
 		private var score:Array;
 		private var finalScore:int;
 		private var totalShots:uint;
-		
-		private var board:Object;
-		private var numeroDoScoreboard:Object;
-		
-		private var stage:Stage;
-		
-		public function Scoreboard(stage:Stage)
+				
+		public function Scoreboard()
 		{
 			finalScore = 0;
 			totalShots = 0;
@@ -43,34 +39,34 @@ package
 			setPar(3, 16);
 			setPar(2, 17);
 			
-			stage.addChild(board);
-			
 		}
 		
 		public function setPar(num:int, hole:int):void
 		{
-			par(hole) = num;
+			par[hole] = num;
 		}
 		
 		public function setScore(num:int, hole:int):void 
 		{
-			score(hole) = num;
+			score[hole] = num;
 		}
 		
 		public function setFinalScore():void
 		{
 			for (var i:uint = 0; i < 18; i++)
 			{
-				finalScore += (score(i) - par(i));
+				finalScore += (score[i] - par[i]);
 			}
 		}
 		
 		public function getTotalShots():uint
 		{
+			totalShots = 0;
 			for (var i:uint = 0; i < 18; i++)
 			{
-				totalShots += score(i);
+				totalShots += score[i];
 			}
+			return totalShots;
 		}
 		
 		public function update():void
