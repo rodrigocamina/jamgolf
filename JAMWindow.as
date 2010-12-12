@@ -12,11 +12,15 @@
 	public class JAMWindow extends GerenciadorDeObjetos
 	{
 		private var stage:Stage;
+		public var terrenos:GerenciadorDeObjetos;
+		public var barreiras:GerenciadorDeObjetos;
 		
 		public function JAMWindow(stage:Stage) 
 		{
 			super(stage);
 			this.stage = stage;
+			this.terrenos = new GerenciadorDeObjetos(stage);
+			this.barreiras = new GerenciadorDeObjetos(stage);
 		}
 		
 		public function update(evt:Event) {
