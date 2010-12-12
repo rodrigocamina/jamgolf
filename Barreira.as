@@ -1,4 +1,4 @@
-package  
+﻿package  
 {
 	import flash.display.MovieClip;
 	/**
@@ -17,6 +17,7 @@ package
 		public function init():Barreira
 		{
 			this.elasticidade = 0.95;
+			return this;
 		}
 	}
 
