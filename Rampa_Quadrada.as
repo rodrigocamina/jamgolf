@@ -11,12 +11,11 @@ package
 			
 		}
 		
-		public function init(direcao:int, inclinacao:int):Rampa_Quadrada
+		public function init():Rampa_Quadrada
 		{
-			this.direcao = direcao;
-			this.inclinacao = inclinacao;
 			this.atrito = 0.85;
 			this.tipo = 2;
+			return this;
 		}
 	}
 
