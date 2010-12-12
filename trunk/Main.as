@@ -39,14 +39,14 @@
 			}
 			if (currentWindow != null) {
 				currentWindow.removeAll();
-				removeEventListener(Event.ENTER_FRAME, currentWindow.update);
-				removeEventListener(MouseEvent.MOUSE_UP, currentWindow.mouseUP);
-				removeEventListener(MouseEvent.MOUSE_DOWN, currentWindow.mouseDOWN);
+				stage.removeEventListener(Event.ENTER_FRAME, currentWindow.simulate);
+				stage.removeEventListener(MouseEvent.MOUSE_UP, currentWindow.mouseUP);
+				stage.removeEventListener(MouseEvent.MOUSE_DOWN, currentWindow.mouseDOWN);
 			}
 			currentWindow = nextW;
-			addEventListener(Event.ENTER_FRAME, currentWindow.update);
-			addEventListener(MouseEvent.MOUSE_UP, currentWindow.mouseUP);
-			addEventListener(MouseEvent.MOUSE_DOWN, currentWindow.mouseDOWN);
+			stage.addEventListener(Event.ENTER_FRAME, currentWindow.simulate);
+			stage.addEventListener(MouseEvent.MOUSE_UP, currentWindow.mouseUP);
+			stage.addEventListener(MouseEvent.CLICK, currentWindow.mouseDOWN);
 			
 		}
 	}
