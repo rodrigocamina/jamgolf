@@ -29,7 +29,7 @@
 		private function init(e:Event = null):void 
 		{
 			removeEventListener(Event.ADDED_TO_STAGE, init);
-			goTo(HOLE9SCREEN);
+			goTo(HOLE3SCREEN);
 		}
 		
 		
@@ -38,16 +38,22 @@
 			switch(window) {
 				case SPLASHSCREEN:
 					nextW = new SplashScreen(stage);
+					break;
 				case HOLE1SCREEN:
-					nextW = new Hole1Screen(stage);		
+					nextW = new Hole1Screen(stage);	
+					break;	
 				case HOLE3SCREEN:
 					nextW = new Hole3Screen(stage);
+					break;
 				case HOLE5SCREEN:
 					nextW = new Hole5Screen(stage);
+					break;
 				case HOLE7SCREEN:
 					nextW = new Hole7Screen(stage);
+					break;
 				case HOLE9SCREEN:
 					nextW = new Hole9Screen(stage);
+					break;
 			}
 			if (currentWindow != null) {
 				currentWindow.removeAll();

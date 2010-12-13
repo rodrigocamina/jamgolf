@@ -1,6 +1,7 @@
 package  
 {
 	import flash.display.Stage;
+	import flash.events.Event;
 	/**
 	 * ...
 	 * @author jean
@@ -8,6 +9,8 @@ package
 	public class Hole3Screen extends JAMWindow
 	{
 	
+		var taco = new Taco();
+		var bola:Bola = new Bola();
 		public function Hole3Screen(stage:Stage) 
 		{
 			super(stage);
@@ -23,21 +26,21 @@ package
 			
 			//left
 			parede = new Barreira;
-			parede.scaleX = 0.8;
+			parede.scaleX = 0.1;
 			parede.scaleY = 0.35;
 			parede.x  = 87;
 			parede.y  = 25;
 			barreiras.addObject(parede);
 			
 			parede = new Barreira;
-			parede.scaleX = 0.8;
+			parede.scaleX = 0.1;
 			parede.scaleY = 0.55;
 			parede.x  = 220;
 			parede.y  = 124;
 			barreiras.addObject(parede);
 			
 			parede = new Barreira;
-			parede.scaleX = 0.8;
+			parede.scaleX = 0.1;
 			parede.scaleY = 0.32;
 			parede.x  = 87;
 			parede.y  = 280;
@@ -46,7 +49,7 @@ package
 			//up
 			parede = new Barreira;
 			parede.rotation = 90;
-			parede.scaleX = 0.8;
+			parede.scaleX = 0.1;
 			parede.scaleY = 1.3;
 			parede.x  = 455;
 			parede.y  = 20;
@@ -54,7 +57,7 @@ package
 			
 			parede = new Barreira;
 			parede.rotation = 90;
-			parede.scaleX = 0.8;
+			parede.scaleX = 0.1;
 			parede.scaleY = 0.5;
 			parede.x  = 458;
 			parede.y  = 279;
@@ -62,7 +65,7 @@ package
 			
 			parede = new Barreira;
 			parede.rotation = 90;
-			parede.scaleX = 0.8;
+			parede.scaleX = 0.1;
 			parede.scaleY = 0.5;
 			parede.x  = 243;
 			parede.y  = 279;
@@ -71,7 +74,7 @@ package
 			//down
 			parede = new Barreira;
 			parede.rotation =- 90;
-			parede.scaleX = 0.8;
+			parede.scaleX = 0.1;
 			parede.scaleY = 1.3;
 			parede.x  =88;
 			parede.y  = 373;
@@ -79,7 +82,7 @@ package
 			
 			parede = new Barreira;
 			parede.rotation =- 90;
-			parede.scaleX = 0.8;
+			parede.scaleX = 0.1;
 			parede.scaleY = 0.5;
 			parede.x  = 315;
 			parede.y  = 130;
@@ -87,7 +90,7 @@ package
 			
 			parede = new Barreira;
 			parede.rotation =- 90;
-			parede.scaleX = 0.8;
+			parede.scaleX = 0.1;
 			parede.scaleY = 0.5;
 			parede.x  = 100;
 			parede.y  = 125;
@@ -96,7 +99,7 @@ package
 			//ringht
 			parede = new Barreira;
 			parede.rotation =180;
-			parede.scaleX = 0.8;
+			parede.scaleX = 0.1;
 			parede.scaleY = 0.32;
 			parede.x  =458;
 			parede.y  = 370;
@@ -104,7 +107,7 @@ package
 			
 			parede = new Barreira;
 			parede.rotation =180;
-			parede.scaleX = 0.8;
+			parede.scaleX = 0.1;
 			parede.scaleY = 0.69;
 			parede.x  = 325;
 			parede.y  = 302;
@@ -112,7 +115,7 @@ package
 			
 			parede = new Barreira;
 			parede.rotation =180;
-			parede.scaleX = 0.8;
+			parede.scaleX = 0.1;
 			parede.scaleY = 0.35;
 			parede.x  = 457;
 			parede.y  = 121
@@ -130,8 +133,20 @@ package
 			rampa.x =150;
 			rampa.y = 150;
 			terrenos.addObject(rampa);
+			
+			
+			taco.x = 150;
+			taco.y = 75;
+			taco.init(bola,stage)
+			bola.init(this,taco);
+			addObject(bola);
+			addObject(taco);
 		}
 		
+		override public function update(evt:Event) {
+			taco.simulate();
+			bola.update();
+		}
 	}
 
 }
