@@ -1,6 +1,7 @@
 package  
 {
 	import flash.display.Stage;
+	import flash.events.Event;
 	/**
 	 * ...
 	 * @author jean
@@ -9,14 +10,16 @@ package
 	{
 		var parede:Barreira;
 		var buraco:Buraco;
+		var taco = new Taco();
+		var bola:Bola = new Bola();
 		
 		public function Hole1Screen(stage:Stage) 
 		{
 			super(stage);
 			
 			var hole1:Hole1 = new Hole1();
-			var parede:Barreira = new Barreira;
-			var buraco = new Buraco;
+			var parede:Barreira = new Barreira();
+			var buraco = new Buraco();
 			
 			hole1.x = 0;
 			hole1.y = 0;
@@ -73,11 +76,21 @@ package
 			buraco.scaleY = 0.30;
 			addObject(buraco);
 			
+			taco.x = 250;
+			taco.y = 250;
+			taco.init(bola,stage)
+			bola.init(this,taco);
+			addObject(bola);
+			addObject(taco);
 			
 			//stage.addEventListener(Event.ENTER_FRAME, currentWindow.update);
 			//stage.addEventListener(MouseEvent.MOUSE_UP, currentWindow.mouseUP);
 			//stage.addEventListener(MouseEvent.MOUSE_DOWN, currentWindow.mouseDOWN);
 
+		}
+		override public function update(evt:Event) {
+			taco.simulate();
+			bola.update();
 		}
 		
 	}

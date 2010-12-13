@@ -11,13 +11,6 @@ package
 			
 		}
 		
-		public function init():Rampa_Triangular
-		{
-
-			this.atrito = 0.85;
-			this.tipo = 3;
-			return this;
-		}
 		
 	}
 

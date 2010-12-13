@@ -11,12 +11,6 @@
 			
 		}
 		
-		public function init():Areia 
-		{
-			this.atrito = 0.6;
-			this.tipo = 1;
-			return this;
-		}
 	}
 
 }

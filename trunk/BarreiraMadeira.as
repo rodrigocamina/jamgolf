@@ -6,7 +6,7 @@ package
 	 * ...
 	 * @author jean
 	 */
-	public class BarreiraMadeira extends MovieClip
+	public class BarreiraMadeira extends Barreira
 	{
 		
 		public function BarreiraMadeira() 
