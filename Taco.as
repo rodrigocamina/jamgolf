@@ -41,6 +41,11 @@ package
 		public function simulateRotation(e:MouseEvent):void {
 			var angulo:Number = Math.atan2((e.stageY - this.y),(e.stageX - this.x));
 			this.rotation = (180 / Math.PI) * angulo + 90;
+			if (e.stageY < 50) {
+				Main.scoreboard.up = false;
+			}else {
+				Main.scoreboard.up = true;
+			}
 		}
 		
 		public function simulate() {
