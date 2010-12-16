@@ -2,6 +2,7 @@
 {
 	import flash.display.Stage;
 	import flash.display.MovieClip;
+	import flash.text.TextField;
 	
 	/**
 	 * ...
@@ -13,6 +14,7 @@
 		private var score:Array;
 		private var finalScore:int;
 		private var totalShots:uint;
+		private var hole:uint = 0;
 				
 		public function Scoreboard()
 		{
@@ -20,35 +22,67 @@
 			totalShots = 0;
 			par = new Array(18);
 			score = new Array(18);
-			setPar(2, 0);
-			setPar(3, 1);
-			setPar(3, 2);
-			setPar(2, 3);
-			setPar(3, 4);
-			setPar(3, 5);
-			setPar(3, 6);
-			setPar(4, 7);
-			setPar(2, 8);
-			setPar(4, 9);
-			setPar(3, 10);
-			setPar(5, 11);
-			setPar(4, 12);
-			setPar(3, 13);
-			setPar(4, 14);
-			setPar(2, 15);
-			setPar(3, 16);
-			setPar(2, 17);
+			/**var txt:TextField = new TextField();
+			par.push(txt);
+			txt:TextField = new TextField();
+			par.push(txt);
+			txt:TextField = new TextField();
+			par.push(txt);
+			txt:TextField = new TextField();
+			par.push(txt);
+			txt:TextField = new TextField();
+			par.push(txt);
+			txt:TextField = new TextField();
+			par.push(txt);
+			txt:TextField = new TextField();
+			par.push(txt);
+			txt:TextField = new TextField();
+			par.push(txt);
+			txt:TextField = new TextField();
+			par.push(txt);
+			txt:TextField = new TextField();
+			par.push(txt);/
+
+			
+			
+			setPar(2);
+			setPar(3);
+			setPar(3);
+			setPar(2);
+			setPar(3);
+			setPar(3);
+			setPar(3);
+			setPar(4);
+			setPar(2);
+			setPar(4);
+			/*
+			setPar(3);
+			setPar(5);
+			setPar(4);
+			setPar(3);
+			setPar(4);
+			setPar(2);
+			setPar(3);
+			setPar(2);*/
 			
 		}
 		
-		public function setPar(num:int, hole:int):void
+		public function setPar(num:int):void
 		{
 			par[hole] = num;
+			hole++;
+			if (hole == Main.nholes) {
+				hole = 0;
+			}
 		}
 		
-		public function setScore(num:int, hole:int):void 
+		public function setScore(num:int):void 
 		{
 			score[hole] = num;
+			hole++;
+			if (hole == Main.nholes) {
+				hole = 0;
+			}
 		}
 		
 		public function setFinalScore():void

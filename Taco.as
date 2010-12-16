@@ -20,6 +20,7 @@ package
 		private var tempo:int;
 		private var bola:Bola;
 		public var mystage:Stage;
+		public var ntacadas:int;
 		
 		public function Taco() 
 		{
@@ -49,6 +50,7 @@ package
 				}
 				if (scaleY < 0&&!tacado) {
 					tacado = true;
+					ntacadas++;
 					var difX:Number = (oldx - this.x);
 					var difY:Number = (oldy - this.y);
 					var total:Number = ( difX * difX) + ( difY* difY);

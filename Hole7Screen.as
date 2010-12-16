@@ -1,13 +1,15 @@
 package  
 {
 	import flash.display.Stage;
+	import flash.events.Event;
 	/**
 	 * ...
 	 * @author jean
 	 */
 	public class Hole7Screen extends JAMWindow
 	{
-		
+		var taco = new Taco();
+		var bola:Bola = new Bola();
 		public function Hole7Screen(stage:Stage) 
 		{
 			super(stage);
@@ -24,6 +26,7 @@ package
 			areia.x = 101;
 			areia.y = 240;
 			areia.scaleX = 3;
+			areia.init(0.5);
 			terrenos.addObject(areia);
 			
 			
@@ -71,7 +74,19 @@ package
 			addObject(buraco); 
 
 			
+			taco.x = 63;
+			taco.y = 195;
+			taco.init(bola,stage)
+			bola.init(this,taco,buraco);
+			addObject(bola);
+			addObject(taco);
 		}
+		
+		override public function update(evt:Event) {
+			taco.simulate();
+			bola.update();
+		}
+
 		
 	}
 

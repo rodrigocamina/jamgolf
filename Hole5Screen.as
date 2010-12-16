@@ -1,13 +1,15 @@
 package  
 {
 	import flash.display.Stage;
+	import flash.events.Event;
 	/**
 	 * ...
 	 * @author jean
 	 */
 	public class Hole5Screen extends JAMWindow
 	{
-		
+		var taco = new Taco();
+		var bola:Bola = new Bola();
 		public function Hole5Screen(stage:Stage) 
 		{
 			super(stage);
@@ -19,24 +21,6 @@ package
 			hole5.x = 0;
 			hole5.y = 0;
 			addObject(hole5);
-			
-				//ranpa
-			var rampaTriangular:Rampa_Triangular = new Rampa_Triangular;
-			rampaTriangular.x = 460;
-			rampaTriangular.y = 150;
-			rampaTriangular.rotation = 90; 
-			rampaTriangular.scaleX = -1.1;
-			rampaTriangular.scaleY = -1.1;
-			terrenos.addObject(rampaTriangular);
-			
-			
-			rampaTriangular = new Rampa_Triangular;
-			rampaTriangular.x = 357;
-			rampaTriangular.y = 35;
-			rampaTriangular.scaleX = 1.1;
-			rampaTriangular.scaleY = 1.1;
-			rampaTriangular.rotation = 90; 
-			terrenos.addObject(rampaTriangular);
 			
 			//left
 			parede = new Barreira;
@@ -96,7 +80,19 @@ package
 			addObject(buraco);
 			
 		
+			taco.x = 70;
+			taco.y = 70;
+			taco.init(bola,stage)
+			bola.init(this,taco,buraco);
+			addObject(bola);
+			addObject(taco);
 		}
+		
+		override public function update(evt:Event) {
+			taco.simulate();
+			bola.update();
+		}
+
 		
 	}
 
