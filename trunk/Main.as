@@ -26,11 +26,11 @@
 		public var HOLE12SCREEN:int = 9;
 		public var HOLE14SCREEN:int = 10;
 		
-		private var currentHole = 1;
+		public static var currentHole = 1;
 		public static var holeDone:Boolean = true;
 		private var startNext:Boolean = false;
-		public static var scoreboard:Scoreboard = new Scoreboard();
 		public static var nholes:int = 18;
+		public static var scoreboard:Scoreboard = new Scoreboard();
 		
 		public function Main():void 
 		{
@@ -40,8 +40,11 @@
 		
 		private function init(e:Event = null):void 
 		{
+			scoreboard.setPars();
 			removeEventListener(Event.ADDED_TO_STAGE, init);
 			addEventListener(Event.ENTER_FRAME, xkDone);
+			scoreboard.x = 0;
+			scoreboard.y = 50;
 		}
 		
 		
@@ -91,6 +94,7 @@
 				removeEventListener(MouseEvent.MOUSE_UP, currentWindow.mouseUP);
 				removeEventListener(MouseEvent.MOUSE_DOWN, currentWindow.mouseDOWN);
 			}
+			trace("TESTE");
 			currentWindow = nextW;
 			addEventListener(Event.ENTER_FRAME, currentWindow.update);
 			addEventListener(MouseEvent.MOUSE_UP, currentWindow.mouseUP);
@@ -116,8 +120,11 @@
 			}else if (startNext) {
 				startNext = false;
 				goTo(currentHole++);
+				stage.addChild(scoreboard);
 			}
+			scoreboard.update();
 		}
+		
 	}
 	
 }
