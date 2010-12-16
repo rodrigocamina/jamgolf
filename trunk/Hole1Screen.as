@@ -1,4 +1,4 @@
-package  
+﻿package  
 {
 	import flash.display.Stage;
 	import flash.events.Event;
@@ -27,10 +27,37 @@ package
 			
 			//left
 			parede = new Barreira;
-			parede.x  = 154;
-			parede.y += 24;
+			parede.x  = 150;
+			parede.y += 22;
+			parede.scaleY = 1.26;
+			parede.scaleX = 0.3;
 			barreiras.addObject(parede);
 			
+			
+			parede = new Barreira;
+			parede.x  = 365;
+			parede.y += 22;
+			parede.scaleY = 1.26;
+			parede.scaleX = 0.3;
+			barreiras.addObject(parede);
+			
+			
+			parede = new Barreira;
+			parede.x  = 148;
+			parede.y += 28;
+			parede.scaleY = 0.805;
+			parede.scaleX = 0.3;
+			parede.rotation = -90;
+			barreiras.addObject(parede);
+			
+			parede = new Barreira;
+			parede.x  = 148;
+			parede.y += 382;
+			parede.scaleY = 0.805;
+			parede.scaleX = 0.3;
+			parede.rotation = -90;
+			barreiras.addObject(parede);
+			/*
 			parede = new Barreira;
 			parede.x  = 154;
 			parede.y += 93;
@@ -68,7 +95,7 @@ package
 			parede.scaleY = 0.75;
 			parede.x  = 158;
 			parede.y += 377;
-			barreiras.addObject(parede);
+			barreiras.addObject(parede);*/
 			
 			buraco.x = 256;
 			buraco.y = 67;
@@ -77,9 +104,9 @@ package
 			addObject(buraco);
 			
 			taco.x = 250;
-			taco.y = 250;
+			taco.y = 300;
 			taco.init(bola,stage)
-			bola.init(this,taco);
+			bola.init(this,taco,buraco);
 			addObject(bola);
 			addObject(taco);
 			

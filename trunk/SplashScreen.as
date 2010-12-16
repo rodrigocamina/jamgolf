@@ -21,7 +21,10 @@
 			taco.x = 50;
 			taco.y = 50;
 			taco.init(bola,stage)
-			bola.init(this,taco);
+			var buraco:Buraco = new Buraco();
+			buraco.x = 200;
+			buraco.y = 200;
+			bola.init(this,taco,buraco);
 			stage.addEventListener(Event.ENTER_FRAME, update);
 			stage.addEventListener(MouseEvent.MOUSE_UP, mouseUP);
 			stage.addEventListener(MouseEvent.CLICK, mouseDOWN);

@@ -1,4 +1,4 @@
-package  
+﻿package  
 {
 	import flash.display.Stage;
 	import flash.events.Event;
@@ -138,7 +138,7 @@ package
 			taco.x = 150;
 			taco.y = 75;
 			taco.init(bola,stage)
-			bola.init(this,taco);
+			bola.init(this,taco,buraco);
 			addObject(bola);
 			addObject(taco);
 		}

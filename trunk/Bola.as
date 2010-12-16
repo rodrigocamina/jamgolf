@@ -9,6 +9,7 @@
 	{
 		private var velocidade:Number;
 		public var velocidadeT:Number;
+		public var velocidadeTemp:Number = 0;
 		private var direcao:int;
 		public var oldX:Number;
 		public var oldY:Number;
@@ -16,6 +17,7 @@
 		public var trueY:Number;
 		public var vX:Number;
 		public var vY:Number;
+		private var buraco:Buraco;
 		private var field:JAMWindow;
 		private var taco:Taco;
 		
@@ -25,14 +27,15 @@
 			stop();
 		}
 		
-		public function init(field:JAMWindow,taco:Taco):Bola
+		public function init(field:JAMWindow,taco:Taco,buraco:Buraco):Bola
 		{
+			trueX = x;
+			trueY = y;
 			this.velocidade = 0;
 			this.direcao = 0;
 			this.field = field;
-			trueX = x;
-			trueY = y;
 			this.taco = taco;
+			this.buraco = buraco;
 			return this;
 		}
 		
@@ -53,7 +56,7 @@
 		
 		public function update():void {
 			if (velocidade > 0.1) {
-				var velocidadeTemp:Number = velocidade * 0.95;
+				velocidadeTemp = velocidade * 0.95;
 				var rad:Number = Math.PI * this.rotation / 180;
 				
 				//faz verificacao a cada 5 passos
@@ -64,7 +67,7 @@
 					if (velocidadeTemp > 1) {
 						velocidadeT = 1;
 					}else {
-						//velocidadeT = velocidadeTemp;
+						velocidadeT = velocidadeTemp;
 						break;
 					}
 					velocidadeTemp -= velocidadeT;
@@ -81,6 +84,7 @@
 						var terreno:Terreno = field.terrenos.getObject(i) as Terreno;
 						if (hitTestObject(terreno)) {
 							terreno.influencia(this);
+							break;
 						}
 					}
 					this.trueX = oldX + vX * velocidadeT;
@@ -88,33 +92,33 @@
 					for (i=0; i < field.barreiras.total(); i++) {
 						var barreira:Barreira = field.barreiras.getObject(i) as Barreira;
 						if (barreira.testaHit(this)&&barreira!=bateuAntes) {
-							trace("RotAntes" + rotation);
-							trace("barreira.rotation " + barreira.rotation);
 							var dif:Number = barreira.rotation - 90 - this.rotation;
-							trace("dif "+dif);
 							var rot:Number = this.rotation + (dif) * 2;
-							
 							if (rot > 180) {
 								rot -= 360;
 							}else if (rot < -180) {
 								rot += 360;
 							}
 							this.rotation = rot;
-							trace("RotDepois" + rotation);
 							rad = Math.PI * this.rotation / 180;
 							vX = Math.cos(rad);
 							vY = Math.sin(rad);
 							this.trueX = oldX + vX * velocidadeT;
 							this.trueY = oldY + vY * velocidadeT;
-							if (barreira.testaHit(this)) {
-								trace("TRANCO!");
-							}
 							bateu = barreira;
 							break;
 						}
 					}
+					if (velocidade < 5) {
+						//substituir por raio
+						if (hitTestObject(buraco)) {
+							Main.holeDone = true;
+							Main.scoreboard.setScore(taco.ntacadas);
+							taco.ntacadas = 0;
+							break;
+						}
+					}
 					bateuAntes = bateu;
-					trace("---");
 				}
 				this.x = this.trueX;
 				this.y = this.trueY;

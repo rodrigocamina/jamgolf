@@ -7,45 +7,124 @@
 	 */
 	public class Barreira extends MovieClip
 	{
-		private var elasticidade:Number;
-		
 		public function Barreira() 
 		{
-			
+			width = 28;
+			height = 283;
 		}
 		
 		public function init():Barreira
 		{
-			this.elasticidade = 0.95;
 			return this;
 		}
 		
 		public function testaHit(obj:Bola):Boolean {
-			var xI = obj.trueX - obj.width*obj.scaleX/2;
-			var yI = obj.trueY - obj.height*obj.scaleY/2;
-			var xF = obj.trueX + obj.width*obj.scaleX/2;
-			var yF = obj.trueY + obj.height * obj.scaleY / 2;
-			var mywidth = 28 * scaleX;
-			var myheight = 283 * scaleY;
+			var xI:Number = obj.trueX - obj.width*obj.scaleX/2;
+			var yI:Number = obj.trueY - obj.height*obj.scaleY/2;
+			var xF:Number = obj.trueX + obj.width*obj.scaleX/2;
+			var yF:Number = obj.trueY + obj.height * obj.scaleY / 2;
+			var mywidth:Number = 28 * scaleX;
+			var myheight:Number = 283 * scaleY;
+			var p3:Vector3f = new Vector3f();
+			var p2:Vector3f = new Vector3f();
+			var p1:Vector3f = new Vector3f();
+			p1.x = 0;
+			p1.y = myheight;
+			p2.x = mywidth;
+			p2.y = 0;
+			p3.x = mywidth;
+			p3.y = myheight;
+			/*
+			trace("normal");
+			trace(0 + "," + 0+" r"+rotation);
+			trace(p1.x + "," + p1.y+" r"+rotation);
+			trace(p2.x + "," + p2.y+" r"+rotation);
+			trace(p3.x + "," + p3.y + " r" + rotation);
+			*/
+			Matrix4x4.rotate(p1, -this.rotation);
+			Matrix4x4.rotate(p2, -this.rotation);
+			Matrix4x4.rotate(p3, -this.rotation);
+			/*
+			trace("rotacionado");
+			trace(0 + "," + 0+" r"+rotation);
+			trace(p1.x + "," + p1.y+" r"+rotation);
+			trace(p2.x + "," + p2.y+" r"+rotation);
+			trace(p3.x + "," + p3.y+" r"+rotation);*/
+			
+			p1.x += x;
+			p1.y += y;
+			p2.x += x;
+			p2.y += y;
+			p3.x += x;
+			p3.y += y;
+//			return (linesIntersect(x,y,p1.x,p1.y,xI,yI,xF,yF)||linesIntersect(p2.x,p2.y,p3.x,p3.y,xI,yI,xF,yF));
+			return (linesIntersect(x,y,p1.x,p1.y,xI,yI,xF,yF)||linesIntersect(p2.x,p2.y,p3.x,p3.y,xI,yI,xF,yF)||linesIntersect(x,y,p1.x,p1.y,xI,yF,xF,yI)||linesIntersect(p2.x,p2.y,p3.x,p3.y,xI,yF,xF,yI));
+			/*
 			if (rotation > 0) {
 				if (rotation == 180) {
-					return ((x-mywidth<xF&&x>xF)&&(y-myheight<yF&&y>yF)||(x-mywidth<xI&&x>xI)&&(y-myheight<yI&&y>yI));
+					linesIntersect(x - mywidth, y - myheight, x, y, xI, yI, xF, yF);
+					return (linesIntersect(x, y - myheight, x, y, xI, yI, xF, yF)||linesIntersect(x - mywidth, y - myheight, x - mywidth, y, xI, yI, xF, yF));
 				}else {
 					//90
-					return ((x-myheight<xF&&x>xF)&&(y<yF&&y+mywidth>yF)||(x-myheight<xI&&x>xI)&&(y<yI&&y+mywidth>yI));
+					return (linesIntersect(x - myheight, y , x, y, xI, yI, xF, yF)||linesIntersect(x - myheight, y+mywidth , x, y+mywidth, xI, yI, xF, yF));
 
 				}
 			}else {
 				if (rotation == 0) {
-					return ((x<xF&&x+mywidth>xF)&&(y<yF&&y+myheight>yF)||(x<xI&&x+mywidth>xI)&&(y<yI&&y+myheight>yI));
+					return (linesIntersect(x , y , x, y+myheight, xI, yI, xF, yF)||linesIntersect(x+mywidth, y, x+mywidth, y+myheight, xI, yI, xF, yF));
 				}else {
 					//-90
-					return (((x<xF)&&x+myheight>xF)&&(y-mywidth<yF&&y>yF)||(x<xI&&x+myheight>xI)&&(y-mywidth<yI&&y>yI));
+					return (linesIntersect(x, y , x+myheight, y, xI, yI, xF, yF)||linesIntersect(x, y-mywidth , x+myheight, y-mywidth, xI, yI, xF, yF));
+				}
+			}*/
+		}
+
+		public function linesIntersect(x1:Number, y1:Number,
+    		x2:Number, y2:Number,
+    		x3:Number, y3:Number,
+    		x4:Number, y4:Number):Boolean{
+			return ((relativeCCW(x1, y1, x2, y2, x3, y3) *
+					relativeCCW(x1, y1, x2, y2, x4, y4) <= 0)
+					&& (relativeCCW(x3, y3, x4, y4, x1, y1) *
+					relativeCCW(x3, y3, x4, y4, x2, y2) <= 0));
+		}
+
+		public function relativeCCW(x1:Number, y1:Number,
+    		x2:Number, y2:Number,
+    		px:Number, py:Number):int{
+			x2 -= x1;
+			y2 -= y1;
+			px -= x1;
+			py -= y1;
+			var ccw:Number = px * y2 - py * x2;
+			if (ccw == 0.0) {
+				// The point is colinear, classify based on which side of
+				// the segment the point falls on.  We can calculate a
+				// relative value using the projection of px,py onto the
+				// segment - a negative value indicates the point projects
+				// outside of the segment in the direction of the particular
+				// endpoint used as the origin for the projection.
+				ccw = px * x2 + py * y2;
+				if (ccw > 0.0) {
+					// Reverse the projection to be relative to the original x2,y2
+					// x2 and y2 are simply negated.
+					// px and py need to have (x2 - x1) or (y2 - y1) subtracted
+					//    from them (based on the original values)
+					// Since we really want to get a positive answer when the
+					//    point is "beyond (x2,y2)", then we want to calculate
+					//    the inverse anyway - thus we leave x2 & y2 negated.
+					px -= x2;
+					py -= y2;
+					ccw = px * x2 + py * y2;
+					if (ccw < 0.0) {
+						ccw = 0.0;
+					}
 				}
 			}
+			return (ccw < 0.0) ? -1 : ((ccw > 0.0) ? 1 : 0);
 		}
+	
 	}
-
 	/*
 	public function ptLineDistSq(x1:Number, y1:Number, x2:Number, y2:Number, px:Number, py:Number):Number
     {
@@ -69,6 +148,8 @@
 	}
 	return lenSq;
     }*/
+	
+	
 	
 	
 }
