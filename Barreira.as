@@ -7,6 +7,21 @@
 	 */
 	public class Barreira extends MovieClip
 	{
+		public var xI:Number;
+		public var yI:Number;
+		public var xF:Number;
+		public var yF:Number;
+		public var lastX:Number;
+		public var lastY:Number;
+		public var lastAngle:Number;
+		public var lastScaleX:Number;
+		public var lastScaleY:Number;
+		public var mywidth:Number;
+		public var myheight:Number;
+		public var p3:Vector3f;
+		public var p2:Vector3f;
+		public var p1:Vector3f;
+
 		public function Barreira() 
 		{
 			width = 28;
@@ -19,15 +34,21 @@
 		}
 		
 		public function testaHit(obj:Bola):Boolean {
-			var xI:Number = obj.trueX - obj.width*obj.scaleX/2;
-			var yI:Number = obj.trueY - obj.height*obj.scaleY/2;
-			var xF:Number = obj.trueX + obj.width*obj.scaleX/2;
-			var yF:Number = obj.trueY + obj.height * obj.scaleY / 2;
-			var mywidth:Number = 28 * scaleX;
-			var myheight:Number = 283 * scaleY;
-			var p3:Vector3f = new Vector3f();
-			var p2:Vector3f = new Vector3f();
-			var p1:Vector3f = new Vector3f();
+			if(x!=lastScaleX||y!=lastScaleY||rotation!=lastAngle||scaleX!=lastScaleX||scaleY!=lastScaleY){
+			lastX = x;
+			lastY = y;
+			lastAngle = rotation;
+			lastScaleX = scaleX;
+			lastScaleY = scaleY;
+			xI = obj.trueX - obj.width*obj.scaleX/2;
+			yI = obj.trueY - obj.height*obj.scaleY/2;
+			xF = obj.trueX + obj.width*obj.scaleX/2;
+			yF = obj.trueY + obj.height * obj.scaleY / 2;
+			mywidth = 28 * scaleX;
+			myheight = 283 * scaleY;
+			p3 = new Vector3f();
+			p2 = new Vector3f();
+			p1 = new Vector3f();
 			p1.x = 0;
 			p1.y = myheight;
 			p2.x = mywidth;
@@ -50,14 +71,13 @@
 			trace(p1.x + "," + p1.y+" r"+rotation);
 			trace(p2.x + "," + p2.y+" r"+rotation);
 			trace(p3.x + "," + p3.y+" r"+rotation);*/
-			
 			p1.x += x;
 			p1.y += y;
 			p2.x += x;
 			p2.y += y;
 			p3.x += x;
 			p3.y += y;
-//			return (linesIntersect(x,y,p1.x,p1.y,xI,yI,xF,yF)||linesIntersect(p2.x,p2.y,p3.x,p3.y,xI,yI,xF,yF));
+			}
 			return (linesIntersect(x,y,p1.x,p1.y,xI,yI,xF,yF)||linesIntersect(p2.x,p2.y,p3.x,p3.y,xI,yI,xF,yF)||linesIntersect(x,y,p1.x,p1.y,xI,yF,xF,yI)||linesIntersect(p2.x,p2.y,p3.x,p3.y,xI,yF,xF,yI));
 			/*
 			if (rotation > 0) {
