@@ -43,15 +43,22 @@
 					 velY = 0;
 				}
 			}
+				bola.vX = (bola.vX+velX);
+				bola.vY = (bola.vY+velY);
+				bola.velocidadeTemp -= 0.5;
+				bola.velocidadeT = (Math.sqrt(( bola.vX * bola.vX) + ( bola.vY* bola.vY)));
+				bola.rotation = (180 / Math.PI) * (Math.atan2((bola.vY), (bola.vX)));
+			}else {
+				trace(bola.vX + "/" + bola.vY + " " + bola.velocidadeT + "/" + bola.rotation+" <?<");
+				trace(bola.vX + "/" + bola.vY + " " + bola.velocidadeT + "/" + bola.rotation+" <<");
+				if (bola.areia == false) {
+					bola.areia = true;
+					trace("velhavelocidade " + bola.velocidade);
+					bola.velocidade *= atrito;
+					trace("novavelocidade " + bola.velocidade);
+				}
+				trace(bola.vX + "/" + bola.vY + " " + bola.velocidadeT + "/" + bola.rotation);
 			}
-			trace(bola.vX + "/" + bola.vY + " " + bola.velocidadeT + "/" + bola.rotation+" <?<");
-			trace(bola.vX + "/" + bola.vY + " " + bola.velocidadeT + "/" + bola.rotation+" <<");
-			bola.vX = (bola.vX+velX)*atrito;
-			bola.vY = (bola.vY + velY) * atrito;
-			bola.velocidadeTemp -= 0.5;
-			bola.velocidadeT = (Math.sqrt(( bola.vX * bola.vX) + ( bola.vY* bola.vY)));
-			bola.rotation = (180 / Math.PI) * (Math.atan2((bola.vY), (bola.vX)));
-			trace(bola.vX + "/" + bola.vY + " " + bola.velocidadeT + "/" + bola.rotation);
 		}
 	}
 

@@ -26,7 +26,7 @@ package
 			areia.x = 101;
 			areia.y = 240;
 			areia.scaleX = 3;
-			areia.init(0.5);
+			areia.init(0.90);
 			terrenos.addObject(areia);
 			
 			

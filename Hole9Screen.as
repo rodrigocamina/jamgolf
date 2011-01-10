@@ -18,6 +18,8 @@ package
 			var buraco:Buraco = new Buraco;
 			var areia:Areia = new Areia;
 			
+			areia.init(0.95);
+			
 			hole9.x = 0;
 			hole9.y = 0;
 			addObject(hole9);
