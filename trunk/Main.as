@@ -25,8 +25,9 @@
 		public var HOLE9SCREEN:int = 15;
 		public var HOLE12SCREEN:int = 9;
 		public var HOLE14SCREEN:int = 10;
-		
-		public static var currentHole = 1;
+		public var powerbar:PowerBar;
+		public static var power:Number;
+		public static var currentHole = 10;
 		public static var holeDone:Boolean = true;
 		private var startNext:Boolean = false;
 		public static var nholes:int = 18;
@@ -45,6 +46,7 @@
 			addEventListener(Event.ENTER_FRAME, xkDone);
 			scoreboard.x = 0;
 			scoreboard.y = 50;
+			powerbar.scaleX = 0.5;
 		}
 		
 		
@@ -123,6 +125,7 @@
 				stage.addChild(scoreboard);
 			}
 			scoreboard.update();
+			powerbar.scaleY = power;
 		}
 		
 	}

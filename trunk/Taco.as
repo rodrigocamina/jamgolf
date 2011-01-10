@@ -46,6 +46,15 @@ package
 			}else {
 				Main.scoreboard.up = true;
 			}
+			var difX:Number = (e.stageX - this.x);
+			var difY:Number = (e.stageY - this.y);
+			var total:Number = ( difX * difX) + ( difY* difY);
+			total = (Math.sqrt(total)) / 5.0;
+			if (total > 30) {
+				total = 30;
+			}
+			Main.power = total/30.0;
+			trace(Main.power);
 		}
 		
 		public function simulate() {

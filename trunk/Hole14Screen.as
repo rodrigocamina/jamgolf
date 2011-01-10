@@ -24,7 +24,7 @@ package
 			areia1.y = 250;
 			areia1.scaleX = 2.3;
 			areia1.scaleY = 1;
-			areia1.init(0.5);
+			areia1.init(0.95);
 			terrenos.addObject(areia1);
 			
 			var inclinacao1:Rampa_Quadrada = new Rampa_Quadrada();

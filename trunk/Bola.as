@@ -7,7 +7,7 @@
 	 */
 	public class Bola extends MovieClip
 	{
-		private var velocidade:Number;
+		public var velocidade:Number;
 		public var velocidadeT:Number;
 		public var velocidadeTemp:Number = 0;
 		private var direcao:int;
@@ -17,6 +17,7 @@
 		public var trueY:Number;
 		public var vX:Number;
 		public var vY:Number;
+		public var areia:Boolean =false;
 		private var buraco:Buraco;
 		private var field:JAMWindow;
 		private var taco:Taco;
@@ -120,9 +121,10 @@
 					}
 					bateuAntes = bateu;
 				}
+				areia = false;
 				this.x = this.trueX;
 				this.y = this.trueY;
-				velocidade = velocidade -= 0.3;
+				velocidade -= 0.3;
 			}else {
 				stop();
 				if (taco.tacado) {
